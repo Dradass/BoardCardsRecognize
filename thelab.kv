@@ -1,0 +1,95 @@
+Carousel:
+    direction: 'right'
+    #ids[CameraScreen]
+    CameraScreen:
+    #ids[LibraryScreen]
+    ScreenManager:
+        id: ScreenManager
+        LibraryScreen:
+        LocalLibraryScreen:
+
+<CameraScreen>
+    name: "CameraScreen"
+
+    GridLayoutExample:
+
+<LibraryScreen>:
+    name: "LibraryScreen"
+
+    BoxLayout:
+        orientation: "vertical"
+        Label:
+            text: "Library"
+            color: 0, .5, .5, 1
+            size_hint: 1, .05
+
+        GridLayoutLibrary:
+
+<LocalLibraryScreen>:
+    name: "LocalLibraryScreen"
+    ScrollViewPacks:
+        size_hint: 1, .8
+        pos_hint: {'top': 1}
+        StackLayoutPacks:
+            size_hint_y: None
+            #height: 8000
+            height: self.total_height
+            #size_hint: self.width, None
+            #height: self.minimum_height
+
+    BoxLayout:
+        size_hint: 1, .2
+        orientation: "vertical"
+        Label:
+            text: "LocalLibrary"
+            color: 0, .5, .5, 1
+            size_hint: 1, .5
+        BoxLayout:
+            orientation: "horizontal"
+            Button:
+                text: "Back"
+                on_release: root.on_button_back_release()
+                size_hint: .5, 1
+            Button:
+                text: "New"
+                on_release: root.on_button_back_release()
+                size_hint: .5, 1
+
+<GridLayoutExample>:
+    rows: 3
+    Label:
+        text: "Camera Screen"
+        size_hint: 1, .1
+    #BoxLayoutExample:
+    Image:
+        #source: "ImagesSamples/unnamed.jpg"
+        source: root.imagecapture
+
+    Button:
+        text: root.text
+        size_hint: 1, .2
+        font_name: "fonts/Moonless.otf"
+        font_size: "30dp"
+        on_release: root.on_button_camera_release()
+
+<GridLayoutLibrary>:
+    rows: 3
+    Button:
+        text: "Last used packs"
+        on_release: root.on_button_release()
+    Button:
+        text: "Local packs"
+    Button:
+        text: "Online packs"
+
+<BoxLayoutExample>:
+    #orientation: "vertical"
+    Button:
+        text: "333"
+        size_hint: 1, .6
+        pos: "100dp", "200dp"
+    Label:
+        text: "Hello2"
+        size: "100dp", "80dp"
+        pos: "200dp", "300dp"
+        color: 1, 0, 0, 1
