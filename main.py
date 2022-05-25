@@ -42,7 +42,8 @@ def image_comparing(img1, img2):
         if m.distance < 0.75 * n.distance:
             good.append([m])
 
-    img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, good, None, flags=2)
+    # img3 = cv2.drawMatchesKnn(img1, kp1, img2, kp2, good, None, flags=2)
+    # cv2.imshow(img3)
 
     return round(len(good) / featurescount, 2)
 
@@ -137,7 +138,6 @@ class StackLayoutPacks(StackLayout):
         else:
             button_folder = CreateNewFolderButton(text="Add new group", size_hint=(0.5, self.folder_button_height_ratio))
             self.add_widget(button_folder)
-            #hello git
 
 
 class GridLayoutExample(GridLayout):
@@ -178,7 +178,7 @@ class GridLayoutExample(GridLayout):
         images_comparing_results = []
         for img_sample in all_images:
             try:
-                img2 = cv2.imread(f'{directory_with_samples}//{img_sample}')
+                img2 = cv2.imread(f'{directory_with_samples}\\{img_sample}')
 
             except Exception:
                 print('Error while reading image')
@@ -201,7 +201,7 @@ class GridLayoutLibrary(GridLayout):
         print('button')
         directory_with_samples = 'ImagesSamples'
         img_sample = 'sheeeit.png'
-        img2 = cv2.imread(f'{directory_with_samples}//{img_sample}')
+        img2 = cv2.imread(f'{directory_with_samples}\\{img_sample}')
         App.get_running_app().change_screen(screen_name="LocalLibraryScreen", direction="left")
 
 
