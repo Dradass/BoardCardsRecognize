@@ -52,35 +52,30 @@ class CameraScreen(Screen):
     is_first_enter = False
     first_x = 0
 
-    def on_touch_move(self, touch):
-        if self.is_first_enter:
-            touch.ox = self.x
-            self.first_x = touch.x
-            self.is_first_enter = False
-        print(f"ox = {self.first_x}, X = {touch.x}")
-        #if touch.ox - touch.x > 50:
-        #    App.get_running_app().change_screen(screen_name="LibraryScreen", direction="left")
-
-        # elif touch.ox - touch.x < 50:
-        # App.get_running_app().change_screen(screen_name="LibraryScreen", direction="right")
-        def on_enter(self, *args):
-            print("Entered Camera")
-            self.is_first_enter = True
+    # def on_touch_move(self, touch):
+    #     if self.is_first_enter:
+    #         touch.ox = self.x
+    #         self.first_x = touch.x
+    #         self.is_first_enter = False
+    #     print(f"ox = {self.first_x}, X = {touch.x}")
+    #     def on_enter(self, *args):
+    #         print("Entered Camera")
+    #         self.is_first_enter = True
 
 
 class LibraryScreen(Screen):
     firstenter = False
     first_x = 0
 
-    def on_touch_move(self, touch):
-        if self.firstenter:
-            touch.ox = self.x
-            self.first_x = touch.x
-            self.firstenter = False
-
-        print(f"ox = {self.first_x}, X = {touch.x}")
-        if self.first_x - touch.x > 50:
-            App.get_running_app().change_screen(screen_name="CameraScreen", direction="left")
+    # def on_touch_move(self, touch):
+    #     if self.firstenter:
+    #         touch.ox = self.x
+    #         self.first_x = touch.x
+    #         self.firstenter = False
+    #
+    #     print(f"ox = {self.first_x}, X = {touch.x}")
+    #     if self.first_x - touch.x > 50:
+    #         App.get_running_app().change_screen(screen_name="CameraScreen", direction="left")
         # elif touch.ox - touch.x < 50:
         # App.get_running_app().change_screen(screen_name="CameraScreen", direction="right")
 
@@ -170,15 +165,15 @@ class GridLayoutExample(GridLayout):
         self.counter += 1
         self.text = f"{self.counter}"
         print('button1')
-        img1 = cv2.imread('ImageForRecognition\\template-sheeeit.png')
+        img1 = cv2.imread('ImageForRecognition/template-sheeeit.png')
         directory_with_samples = 'ImagesSamples'
-        all_images = os.listdir(directory_with_samples)
+        all_images = [file for file in os.listdir(directory_with_samples) if os.path.isdir(file)==False]
 
         #images_comparing_results = dict([(img_sample, image_comparing(img1, cv2.imread(f'{directory_with_samples}//{img_sample}'))) for i, img_sample in enumerate(all_images)])
         images_comparing_results = []
         for img_sample in all_images:
             try:
-                img2 = cv2.imread(f'{directory_with_samples}\\{img_sample}')
+                img2 = cv2.imread(f'{directory_with_samples}/{img_sample}')
 
             except Exception:
                 print('Error while reading image')
@@ -191,6 +186,15 @@ class GridLayoutExample(GridLayout):
         print(best_match_image)
         #playsound("SoundSamples/di.wav")
 
+    def on_switch_callback(self, switchObject, switchValue):
+
+        # Switch value are True and False
+        if (switchValue):
+            print('Switch is ON:):):)')
+        else:
+            print('Switch is OFF:(:(:(')
+
+
 
 class BoxLayoutExample(BoxLayout):
     pass
@@ -201,7 +205,7 @@ class GridLayoutLibrary(GridLayout):
         print('button')
         directory_with_samples = 'ImagesSamples'
         img_sample = 'sheeeit.png'
-        img2 = cv2.imread(f'{directory_with_samples}\\{img_sample}')
+        img2 = cv2.imread(f'{directory_with_samples}/{img_sample}')
         App.get_running_app().change_screen(screen_name="LocalLibraryScreen", direction="left")
 
 

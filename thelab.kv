@@ -62,15 +62,17 @@ Carousel:
         size_hint: 1, .1
     #BoxLayoutExample:
     Image:
-        #source: "ImagesSamples/unnamed.jpg"
-        source: root.imagecapture
+        source: "ImagesSamples/unnamed.jpg"
+        #source: root.imagecapture
 
-    Button:
-        text: root.text
+    Switch:
+        #text: root.text
+        text: "Recognizing image"
+        id: switch_camera
         size_hint: 1, .2
         font_name: "fonts/Moonless.otf"
         font_size: "30dp"
-        on_release: root.on_button_camera_release()
+        on_active: root.on_switch_callback(self, self.active)
 
 <GridLayoutLibrary>:
     rows: 3
